@@ -4,6 +4,7 @@ namespace App\Providers\Filament;
 
 use App\Models\Program;
 use BezhanSalleh\FilamentShield\Middleware\SyncShieldTenant;
+use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -61,6 +62,10 @@ class ProgramPanelProvider extends PanelProvider
             ], isPersistent: true)
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            // ->plugins([
+            //     FilamentShieldPlugin::make(),
+            // ])
+            ;
     }
 }
