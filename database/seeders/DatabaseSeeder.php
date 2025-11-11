@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         $superAdmin = User::create([
             'name' => 'Super Admin',
             'email' => 'superadmin@itera.ac.id',
-            'password' => bcrypt('password'),
+            'password' => bcrypt('123'),
             'email_verified_at' => now(),
         ]);
 

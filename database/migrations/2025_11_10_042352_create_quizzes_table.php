@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('quizzes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('course_schedule_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('program_id')->constrained()->cascadeOnDelete();
             $table->string('title');
             $table->text('description')->nullable();
             $table->enum('type', ['formative', 'summative', 'midterm', 'final'])->default('formative');

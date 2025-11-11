@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('advising_bookings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('advising_schedule_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('program_id')->constrained()->cascadeOnDelete();
             $table->foreignId('student_id')->constrained()->cascadeOnDelete();
             $table->date('booking_date'); // Tanggal Booking
             $table->text('topic')->nullable(); // Topik yang ingin dibahas

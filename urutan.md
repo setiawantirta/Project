@@ -12,6 +12,12 @@ git branch -M main
 git remote add origin https://github.com/setiawantirta/Project.git
 git push -u origin main
 
+# Push Simple
+git add .
+git commit -m "3 commit"
+git branch -M main
+git push -u origin main
+
 # Install Panel
 php artisan make:filament-panel admin
 php artisan make:filament-panel program

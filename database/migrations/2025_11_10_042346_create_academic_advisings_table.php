@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('academic_advisings', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('program_id')->constrained()->cascadeOnDelete();
             $table->foreignId('student_id')->constrained()->cascadeOnDelete();
             $table->foreignId('lecturer_id')->constrained()->cascadeOnDelete(); // Dosen Wali
             $table->string('academic_year'); // Tahun Akademik

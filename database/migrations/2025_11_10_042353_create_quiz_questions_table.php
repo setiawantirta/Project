@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('quiz_questions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('quiz_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('program_id')->constrained()->cascadeOnDelete();
             $table->foreignId('learning_outcome_id')->nullable()->constrained()->nullOnDelete(); // Link ke CPL/CPMK
             $table->enum('type', ['multiple_choice', 'true_false', 'essay', 'matching'])->default('multiple_choice');
             $table->text('question'); // Soal

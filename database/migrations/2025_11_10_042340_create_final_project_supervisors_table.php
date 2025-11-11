@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('final_project_id')->constrained()->cascadeOnDelete();
             $table->foreignId('lecturer_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('program_id')->constrained()->cascadeOnDelete();
             $table->enum('role', ['main_supervisor', 'co_supervisor', 'examiner']); // Pembimbing Utama/Co-Pembimbing/Penguji
             $table->integer('order')->default(1); // Urutan (Pembimbing 1, 2, dst)
             $table->date('assignment_date'); // Tanggal Penugasan

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('final_project_seminars', function (Blueprint $table) {
             $table->id();
             $table->foreignId('final_project_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('program_id')->constrained()->cascadeOnDelete();
             $table->enum('type', ['proposal', 'qualification', 'defense']); // Jenis Seminar
             $table->dateTime('scheduled_at'); // Jadwal Seminar
             $table->string('room')->nullable(); // Ruangan

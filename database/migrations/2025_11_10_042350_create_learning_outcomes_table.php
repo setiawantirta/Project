@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('learning_outcomes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('course_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('program_id')->constrained()->cascadeOnDelete();
             $table->string('code'); // Kode CPL/CPMK (e.g., CPL-1, CPMK-2)
             $table->enum('type', ['cpl', 'cpmk']); // CPL (Capaian Pembelajaran Lulusan) or CPMK (Capaian Pembelajaran MK)
             $table->text('description'); // Deskripsi capaian pembelajaran

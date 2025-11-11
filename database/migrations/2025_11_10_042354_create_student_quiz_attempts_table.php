@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('quiz_id')->constrained()->cascadeOnDelete();
             $table->foreignId('student_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('program_id')->constrained()->cascadeOnDelete();
             $table->integer('attempt_number'); // Percobaan ke berapa
             $table->json('answers'); // Jawaban mahasiswa dalam JSON
             $table->decimal('score', 5, 2)->nullable(); // Nilai yang didapat

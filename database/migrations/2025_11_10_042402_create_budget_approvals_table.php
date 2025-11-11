@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('budget_approvals', function (Blueprint $table) {
             $table->id();
             $table->foreignId('budget_proposal_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('program_id')->constrained()->cascadeOnDelete();
             $table->foreignId('approver_id')->constrained('users'); // Tendik Keuangan/Wadek
             $table->enum('approver_role', ['finance_staff', 'vice_dean', 'dean']); // Role yang approve
             $table->integer('approval_level')->default(1); // Level persetujuan (1, 2, 3)

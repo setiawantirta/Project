@@ -17,19 +17,41 @@ class RoleSeeder extends Seeder
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         // Global Roles (AdminPanel)
-        $superAdmin = Role::firstOrCreate(['name' => 'super_admin', 'guard_name' => 'web']);
-        $dean = Role::firstOrCreate(['name' => 'dean', 'guard_name' => 'web']);
-        $viceDean = Role::firstOrCreate(['name' => 'vice_dean', 'guard_name' => 'web']);
-        $financeStaff = Role::firstOrCreate(['name' => 'finance_staff', 'guard_name' => 'web']);
+        $superAdmin = Role::firstOrCreate([
+            'name' => 'super_admin', 
+            'guard_name' => 'web']);
+        $dean = Role::firstOrCreate([
+            'name' => 'dean', 
+            'guard_name' => 'web']);
+        $viceDean = Role::firstOrCreate([
+            'name' => 'vice_dean', 
+            'guard_name' => 'web']);
+        $financeStaff = Role::firstOrCreate([
+            'name' => 'finance_staff', 
+            'guard_name' => 'web']);
 
         // Tenant Roles (ProgramPanel)
-        $programCoordinator = Role::firstOrCreate(['name' => 'program_coordinator', 'guard_name' => 'web']);
-        $curriculumCoordinator = Role::firstOrCreate(['name' => 'curriculum_coordinator', 'guard_name' => 'web']);
-        $knowledgeCoordinator = Role::firstOrCreate(['name' => 'knowledge_coordinator', 'guard_name' => 'web']);
-        $prCoordinator = Role::firstOrCreate(['name' => 'pr_coordinator', 'guard_name' => 'web']);
-        $internshipCoordinator = Role::firstOrCreate(['name' => 'internship_coordinator', 'guard_name' => 'web']);
-        $lecturer = Role::firstOrCreate(['name' => 'lecturer', 'guard_name' => 'web']);
-        $student = Role::firstOrCreate(['name' => 'student', 'guard_name' => 'web']);
+        $programCoordinator = Role::firstOrCreate([
+            'name' => 'program_coordinator', 
+            'guard_name' => 'web']);
+        $curriculumCoordinator = Role::firstOrCreate([
+            'name' => 'curriculum_coordinator', 
+            'guard_name' => 'web']);
+        $knowledgeCoordinator = Role::firstOrCreate([
+            'name' => 'knowledge_coordinator', 
+            'guard_name' => 'web']);
+        $prCoordinator = Role::firstOrCreate([
+            'name' => 'pr_coordinator', 
+            'guard_name' => 'web']);
+        $internshipCoordinator = Role::firstOrCreate([
+            'name' => 'internship_coordinator', 
+            'guard_name' => 'web']);
+        $lecturer = Role::firstOrCreate([
+            'name' => 'lecturer', 
+            'guard_name' => 'web']);
+        $student = Role::firstOrCreate([
+            'name' => 'student', 
+            'guard_name' => 'web']);
 
         // Give super_admin all permissions (sync to replace existing)
         $superAdmin->syncPermissions(Permission::all());
