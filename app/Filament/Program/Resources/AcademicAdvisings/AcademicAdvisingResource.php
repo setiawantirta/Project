@@ -18,7 +18,10 @@ class AcademicAdvisingResource extends Resource
 {
     protected static ?string $model = AcademicAdvising::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    // protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|\UnitEnum|null $navigationGroup = 'Advising Management';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-chat-bubble-left-right';
+    protected static ?string $navigationLabel = 'Academic Advisings';
 
     protected static ?string $recordTitleAttribute = 'name';
 

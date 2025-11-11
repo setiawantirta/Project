@@ -2,6 +2,16 @@
 composer create-project laravel/laravel . "^12.0"
 composer require filament/filament:"^4.0"
 
+# Push Github
+echo "# Project" >> README.md
+git init
+git add README.md
+git add .
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/setiawantirta/Project.git
+git push -u origin main
+
 # Install Panel
 php artisan make:filament-panel admin
 php artisan make:filament-panel program

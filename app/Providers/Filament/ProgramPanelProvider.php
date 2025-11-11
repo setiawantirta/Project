@@ -34,7 +34,7 @@ class ProgramPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Blue,
             ])
-            ->brandName('SIAKAD - Program Studi')
+            ->brandName('Program Management System')
             ->discoverResources(in: app_path('Filament/Program/Resources'), for: 'App\Filament\Program\Resources')
             ->discoverPages(in: app_path('Filament/Program/Pages'), for: 'App\Filament\Program\Pages')
             ->pages([
