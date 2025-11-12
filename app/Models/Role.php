@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\Permission\Models\Role as SpatieRole;
 
 class Role extends SpatieRole
@@ -14,6 +15,11 @@ class Role extends SpatieRole
     {
         return $this->belongsTo(Program::class);
     }
+
+    // public function programs(): BelongsToMany
+    // {
+    //     return $this->belongsToMany(Program::class, 'program_role');
+    // }
 
     // Role global
     public function scopeGlobal($query)

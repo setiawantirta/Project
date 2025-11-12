@@ -142,4 +142,8 @@ class Program extends Model implements HasName
     {
         return $this->hasMany(Role::class);
     }
+    // public function roles(): BelongsToMany
+    // {
+    //     return $this->belongsToMany(Role::class, 'program_role');
+    // }
 }

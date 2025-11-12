@@ -7,6 +7,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
@@ -17,8 +18,11 @@ class LecturersTable
     {
         return $table
             ->columns([
-                TextColumn::make('program.name')
-                    ->searchable(),
+                ImageColumn::make('user.avatar')
+                    ->label('Avatar')
+                    ->circular()
+                    ->defaultImageUrl(url('/images/default-avatar.png'))
+                    ->size(40),
                 TextColumn::make('user.name')
                     ->searchable(),
                 TextColumn::make('lecturer_number')

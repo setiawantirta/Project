@@ -8,6 +8,7 @@ use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
@@ -18,6 +19,10 @@ class UsersTable
     {
         return $table
             ->columns([
+                ImageColumn::make('avatar')
+                    ->circular()
+                    ->defaultImageUrl(url('/images/default-avatar.png'))
+                    ->size(40),
                 TextColumn::make('name')
                     ->searchable(),
                 TextColumn::make('email')
@@ -26,12 +31,12 @@ class UsersTable
                 TextColumn::make('roles.name')
                     ->badge()
                     ->separator(',')
-                    ->searchable(),
+                    ->searchable()
+                    ->default(fn ($record) => $record->roles->isEmpty() ? 'No Role Assigned' : null)
+                    ->color(fn ($record) => $record->roles->isEmpty() ? 'warning' : 'success'),
                 TextColumn::make('phone')
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('avatar')
-                    ->searchable(),
                 TextColumn::make('gender')
                     ->searchable(),
                 TextColumn::make('date_of_birth')

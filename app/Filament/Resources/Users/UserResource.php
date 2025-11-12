@@ -27,6 +27,17 @@ class UserResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::doesntHave('roles')->count();
+    }
+
+    public static function getNavigationBadgeColor(): ?string
+    {
+        $count = static::getModel()::doesntHave('roles')->count();
+        return $count > 0 ? 'warning' : 'success';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return UserForm::configure($schema);
