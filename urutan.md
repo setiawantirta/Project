@@ -79,3 +79,4 @@ php artisan make:filament-user
 php artisan make:seeder RoleSeeder
 php artisan make:seeder ProgramSeeder
 php artisan migrate:fresh --seed
+php artisan db:seed --class=RoleSeeder 
