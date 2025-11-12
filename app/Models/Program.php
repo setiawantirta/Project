@@ -126,7 +126,7 @@ class Program extends Model implements HasName
     public function members(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'program_user')
-            ->withPivot('role')
+            // ->withPivot('role')
             ->withTimestamps();
     }
 
@@ -136,5 +136,10 @@ class Program extends Model implements HasName
     public function getFilamentName(): string
     {
         return $this->name;
+    }
+
+    public function roles()
+    {
+        return $this->hasMany(Role::class);
     }
 }

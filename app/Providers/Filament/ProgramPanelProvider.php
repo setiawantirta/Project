@@ -44,7 +44,6 @@ class ProgramPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Program/Widgets'), for: 'App\Filament\Program\Widgets')
             ->widgets([
                 AccountWidget::class,
-                FilamentInfoWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -57,15 +56,14 @@ class ProgramPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
+            // ->plugins([
+            //     FilamentShieldPlugin::make(),
+            // ])
             ->tenantMiddleware([
                 SyncShieldTenant::class,
             ], isPersistent: true)
             ->authMiddleware([
                 Authenticate::class,
-            ])
-            // ->plugins([
-            //     FilamentShieldPlugin::make(),
-            // ])
-            ;
+            ]);
     }
 }

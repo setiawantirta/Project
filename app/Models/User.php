@@ -108,7 +108,7 @@ class User extends Authenticatable implements FilamentUser, HasTenants
     public function programs(): BelongsToMany
     {
         return $this->belongsToMany(Program::class, 'program_user')
-            ->withPivot('role')
+            // ->withPivot('role')
             ->withTimestamps();
     }
 
@@ -127,4 +127,6 @@ class User extends Authenticatable implements FilamentUser, HasTenants
     {
         return $this->programs->contains($tenant);
     }
+
+    
 }
