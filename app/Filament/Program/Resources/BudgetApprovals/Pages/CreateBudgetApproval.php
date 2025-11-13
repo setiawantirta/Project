@@ -8,4 +8,8 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateBudgetApproval extends CreateRecord
 {
     protected static string $resource = BudgetApprovalResource::class;
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

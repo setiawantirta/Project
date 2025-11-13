@@ -8,4 +8,8 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateFinalProject extends CreateRecord
 {
     protected static string $resource = FinalProjectResource::class;
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

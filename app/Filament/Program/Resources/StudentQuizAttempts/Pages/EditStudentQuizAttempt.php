@@ -9,6 +9,10 @@ use Filament\Resources\Pages\EditRecord;
 class EditStudentQuizAttempt extends EditRecord
 {
     protected static string $resource = StudentQuizAttemptResource::class;
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 
     protected function getHeaderActions(): array
     {

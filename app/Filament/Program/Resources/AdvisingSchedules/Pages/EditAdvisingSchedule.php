@@ -9,6 +9,10 @@ use Filament\Resources\Pages\EditRecord;
 class EditAdvisingSchedule extends EditRecord
 {
     protected static string $resource = AdvisingScheduleResource::class;
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 
     protected function getHeaderActions(): array
     {

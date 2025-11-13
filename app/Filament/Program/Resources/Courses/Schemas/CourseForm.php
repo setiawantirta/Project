@@ -2,6 +2,7 @@
 
 namespace App\Filament\Program\Resources\Courses\Schemas;
 
+use Filament\Facades\Filament;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
@@ -16,6 +17,9 @@ class CourseForm
             ->components([
                 Select::make('program_id')
                     ->relationship('program', 'name')
+                    ->default(fn () => Filament::getTenant()?->id)
+                    ->disabled(fn () => Filament::getTenant() !== null)
+                    ->dehydrated()
                     ->required(),
                 TextInput::make('code')
                     ->required(),
@@ -29,9 +33,12 @@ class CourseForm
                 TextInput::make('semester')
                     ->required()
                     ->numeric(),
-                TextInput::make('type')
-                    ->required()
-                    ->default('mandatory'),
+                Select::make('type')
+                    ->options([
+                        'mandatory' => 'Mandatory',
+                        'elective' => 'Elective',
+                    ])
+                    ->native(false),
                 TextInput::make('curriculum_year')
                     ->required(),
                 Toggle::make('is_active')

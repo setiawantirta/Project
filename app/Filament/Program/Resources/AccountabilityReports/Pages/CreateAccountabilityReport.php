@@ -8,4 +8,8 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateAccountabilityReport extends CreateRecord
 {
     protected static string $resource = AccountabilityReportResource::class;
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

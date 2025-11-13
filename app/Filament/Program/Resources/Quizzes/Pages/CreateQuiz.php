@@ -8,4 +8,8 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateQuiz extends CreateRecord
 {
     protected static string $resource = QuizResource::class;
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

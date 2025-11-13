@@ -22,8 +22,10 @@ class CourseSchedulesTable
                     ->searchable(),
                 TextColumn::make('course.name')
                     ->searchable(),
-                TextColumn::make('lecturer.id')
-                    ->searchable(),
+                TextColumn::make('lecturer.user.name')
+                    ->label('Lecturer')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('class_code')
                     ->searchable(),
                 TextColumn::make('academic_year')

@@ -21,7 +21,7 @@ class LecturersTable
                 ImageColumn::make('user.avatar')
                     ->label('Avatar')
                     ->circular()
-                    ->defaultImageUrl(url('/images/default-avatar.png'))
+                    ->defaultImageUrl(url('/public/images/female_default.png'))
                     ->size(40),
                 TextColumn::make('user.name')
                     ->searchable(),

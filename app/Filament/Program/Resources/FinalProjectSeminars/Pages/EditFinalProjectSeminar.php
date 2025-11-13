@@ -9,6 +9,10 @@ use Filament\Resources\Pages\EditRecord;
 class EditFinalProjectSeminar extends EditRecord
 {
     protected static string $resource = FinalProjectSeminarResource::class;
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 
     protected function getHeaderActions(): array
     {

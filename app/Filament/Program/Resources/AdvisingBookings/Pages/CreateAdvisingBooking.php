@@ -8,4 +8,8 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateAdvisingBooking extends CreateRecord
 {
     protected static string $resource = AdvisingBookingResource::class;
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }
