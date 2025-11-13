@@ -2,6 +2,7 @@
 
 namespace App\Filament\Program\Resources\CourseEnrollments\Schemas;
 
+use Filament\Facades\Filament;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -13,6 +14,12 @@ class CourseEnrollmentForm
     {
         return $schema
             ->components([
+                Select::make('program_id')
+                    ->relationship('program', 'name')
+                    ->default(fn () => Filament::getTenant()?->id)
+                    ->disabled(fn () => Filament::getTenant() !== null)
+                    ->dehydrated()
+                    ->required(),
                 TextInput::make('course_schedule_id')
                     ->required()
                     ->numeric(),

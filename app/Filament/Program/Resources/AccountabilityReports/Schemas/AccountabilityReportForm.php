@@ -2,6 +2,7 @@
 
 namespace App\Filament\Program\Resources\AccountabilityReports\Schemas;
 
+use Filament\Facades\Filament;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -20,9 +21,12 @@ class AccountabilityReportForm
                 TextInput::make('budget_proposal_id')
                     ->required()
                     ->numeric(),
-                TextInput::make('program_id')
-                    ->required()
-                    ->numeric(),
+                Select::make('program_id')
+                    ->relationship('program', 'name')
+                    ->default(fn () => Filament::getTenant()?->id)
+                    ->disabled(fn () => Filament::getTenant() !== null)
+                    ->dehydrated()
+                    ->required(),
                 TextInput::make('report_number')
                     ->required(),
                 Textarea::make('executive_summary')

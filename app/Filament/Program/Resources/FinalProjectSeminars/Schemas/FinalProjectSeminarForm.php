@@ -2,6 +2,7 @@
 
 namespace App\Filament\Program\Resources\FinalProjectSeminars\Schemas;
 
+use Filament\Facades\Filament;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
@@ -16,9 +17,17 @@ class FinalProjectSeminarForm
     {
         return $schema
             ->components([
-                TextInput::make('final_project_id')
-                    ->required()
-                    ->numeric(),
+                Select::make('program_id')
+                    ->relationship('program', 'name')
+                    ->default(fn () => Filament::getTenant()?->id)
+                    ->disabled(fn () => Filament::getTenant() !== null)
+                    ->dehydrated()
+                    ->required(),
+                Select::make('final_project_id')
+                    ->relationship('finalProject', 'title')
+                    ->searchable()
+                    ->preload()
+                    ->required(),
                 Select::make('type')
                     ->options(['proposal' => 'Proposal', 'qualification' => 'Qualification', 'defense' => 'Defense'])
                     ->required(),
@@ -33,12 +42,12 @@ class FinalProjectSeminarForm
                     ->columnSpanFull(),
                 Select::make('status')
                     ->options([
-            'scheduled' => 'Scheduled',
-            'ongoing' => 'Ongoing',
-            'completed' => 'Completed',
-            'postponed' => 'Postponed',
-            'cancelled' => 'Cancelled',
-        ])
+                            'scheduled' => 'Scheduled',
+                            'ongoing' => 'Ongoing',
+                            'completed' => 'Completed',
+                            'postponed' => 'Postponed',
+                            'cancelled' => 'Cancelled',
+                        ])
                     ->default('scheduled')
                     ->required(),
                 Textarea::make('minutes')

@@ -20,9 +20,10 @@ class StudentQuizAttemptResource extends Resource
 
     // protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Course Management';
-    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-book-open';
+    protected static string|\UnitEnum|null $navigationGroup = 'Exam Management';
+    protected static string|BackedEnum|null $navigationIcon = null;
     protected static ?string $navigationLabel = 'Student Quiz Attempts';
+    protected static ?int $navigationSort = 1;
 
     protected static ?string $recordTitleAttribute = 'name';
 

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Program\Resources\QuizQuestions\Schemas;
 
+use Filament\Facades\Filament;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -14,6 +15,12 @@ class QuizQuestionForm
     {
         return $schema
             ->components([
+                Select::make('program_id')
+                    ->relationship('program', 'name')
+                    ->default(fn () => Filament::getTenant()?->id)
+                    ->disabled(fn () => Filament::getTenant() !== null)
+                    ->dehydrated()
+                    ->required(),
                 TextInput::make('quiz_id')
                     ->required()
                     ->numeric(),

@@ -28,6 +28,15 @@ class UsersTable
                 TextColumn::make('email')
                     ->label('Email address')
                     ->searchable(),
+                TextColumn::make('programs')
+                    ->label('Programs')
+                    ->badge()
+                    ->separator(',')
+                    ->getStateUsing(fn ($record) => 
+                        $record->programs?->pluck('name')->toArray() ?? []
+                    )
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('roles.name')
                     ->badge()
                     ->separator(',')

@@ -19,8 +19,10 @@ class FinalProjectsTable
             ->columns([
                 TextColumn::make('program.name')
                     ->searchable(),
-                TextColumn::make('student.id')
-                    ->searchable(),
+                TextColumn::make('student.user.name')
+                    ->label('Student')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('registration_number')
                     ->searchable(),
                 TextColumn::make('title')

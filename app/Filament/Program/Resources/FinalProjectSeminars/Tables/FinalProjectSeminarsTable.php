@@ -6,6 +6,8 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\Layout\Split;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -15,7 +17,11 @@ class FinalProjectSeminarsTable
     {
         return $table
             ->columns([
-                TextColumn::make('final_project_id')
+                
+                TextColumn::make('finalProject.student.user.name')
+                    ->numeric()
+                    ->sortable(),
+                TextColumn::make('finalProject.title')
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('type')

@@ -59,6 +59,10 @@ class FinalProject extends Model
     {
         return $this->hasMany(FinalProjectSupervisor::class);
     }
+    public function finalProjectSeminars(): HasMany
+    {
+        return $this->hasMany(FinalProjectSeminar::class);
+    }
 
     public function seminars(): HasMany
     {

@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Budget extends Model
 {
+    protected $guarded = [];
+    
     public function program(): BelongsTo
     {
         return $this->belongsTo(Program::class);

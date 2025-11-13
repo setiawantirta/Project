@@ -2,6 +2,7 @@
 
 namespace App\Filament\Program\Resources\AdvisingSchedules\Schemas;
 
+use Filament\Facades\Filament;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
@@ -15,9 +16,12 @@ class AdvisingScheduleForm
     {
         return $schema
             ->components([
-                TextInput::make('program_id')
-                    ->required()
-                    ->numeric(),
+                Select::make('program_id')
+                    ->relationship('program', 'name')
+                    ->default(fn () => Filament::getTenant()?->id)
+                    ->disabled(fn () => Filament::getTenant() !== null)
+                    ->dehydrated()
+                    ->required(),
                 TextInput::make('lecturer_id')
                     ->required()
                     ->numeric(),

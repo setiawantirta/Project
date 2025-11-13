@@ -96,6 +96,11 @@ class Student extends Model
         return $this->hasOne(FinalProject::class);
     }
 
+    // public function finalProjectSupervisions(): HasMany
+    // {
+    //     return $this->hasMany(FinalProjectSupervisor::class);
+    // }
+
     /**
      * Get full name with student number
      */

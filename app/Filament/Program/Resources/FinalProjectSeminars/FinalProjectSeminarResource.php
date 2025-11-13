@@ -20,8 +20,9 @@ class FinalProjectSeminarResource extends Resource
 
     // protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
     protected static string|\UnitEnum|null $navigationGroup = 'Project Management';
-    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-presentation-chart-line';
+    protected static string|BackedEnum|null $navigationIcon = null;
     protected static ?string $navigationLabel = 'Final Projects Seminars';
+    protected static ?int $navigationSort = 3;
 
     protected static ?string $recordTitleAttribute = 'name';
 

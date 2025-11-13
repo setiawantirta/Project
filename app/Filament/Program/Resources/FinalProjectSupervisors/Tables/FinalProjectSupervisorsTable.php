@@ -14,11 +14,16 @@ class FinalProjectSupervisorsTable
     {
         return $table
             ->columns([
-                TextColumn::make('final_project_id')
-                    ->numeric()
+                TextColumn::make('finalProject.student.user.name')
+                    ->label('Student')
+                    ->searchable()
                     ->sortable(),
-                TextColumn::make('lecturer_id')
-                    ->numeric()
+                TextColumn::make('finalProject.title')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('lecturer.user.name')
+                    ->label('Lecturer')
+                    ->searchable()
                     ->sortable(),
                 TextColumn::make('role')
                     ->badge(),

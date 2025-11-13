@@ -2,7 +2,9 @@
 
 namespace App\Filament\Program\Resources\ActivityPlans\Schemas;
 
+use Filament\Facades\Filament;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
@@ -13,9 +15,12 @@ class ActivityPlanForm
     {
         return $schema
             ->components([
-                TextInput::make('program_id')
-                    ->required()
-                    ->numeric(),
+                Select::make('program_id')
+                    ->relationship('program', 'name')
+                    ->default(fn () => Filament::getTenant()?->id)
+                    ->disabled(fn () => Filament::getTenant() !== null)
+                    ->dehydrated()
+                    ->required(),
                 TextInput::make('budget_id')
                     ->required()
                     ->numeric(),

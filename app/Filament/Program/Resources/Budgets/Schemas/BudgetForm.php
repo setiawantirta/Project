@@ -2,7 +2,9 @@
 
 namespace App\Filament\Program\Resources\Budgets\Schemas;
 
+use Filament\Facades\Filament;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
@@ -13,8 +15,12 @@ class BudgetForm
     {
         return $schema
             ->components([
-                TextInput::make('program_id')
-                    ->numeric(),
+                Select::make('program_id')
+                    ->relationship('program', 'name')
+                    ->default(fn () => Filament::getTenant()?->id)
+                    ->disabled(fn () => Filament::getTenant() !== null)
+                    ->dehydrated()
+                    ->required(),
                 TextInput::make('fiscal_year')
                     ->required()
                     ->numeric(),
