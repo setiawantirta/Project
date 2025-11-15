@@ -14,11 +14,14 @@ class ActivityPlansTable
     {
         return $table
             ->columns([
-                TextColumn::make('program_id')
-                    ->numeric()
+                TextColumn::make('program.name')
                     ->sortable(),
-                TextColumn::make('budget_id')
-                    ->numeric()
+                TextColumn::make('budget.budget_code')
+                    ->label('Budget Code')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('budget.name')
+                    ->searchable()
                     ->sortable(),
                 TextColumn::make('activity_code')
                     ->searchable(),
@@ -32,8 +35,8 @@ class ActivityPlansTable
                     ->sortable(),
                 TextColumn::make('location')
                     ->searchable(),
-                TextColumn::make('pic_user_id')
-                    ->numeric()
+                TextColumn::make('lecturer.user.name')
+                    ->searchable()
                     ->sortable(),
                 TextColumn::make('participant_count')
                     ->numeric()

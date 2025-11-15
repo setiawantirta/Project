@@ -21,9 +21,21 @@ class BudgetForm
                     ->disabled(fn () => Filament::getTenant() !== null)
                     ->dehydrated()
                     ->required(),
-                TextInput::make('fiscal_year')
-                    ->required()
-                    ->numeric(),
+                // TextInput::make('fiscal_year')
+                //     ->required()
+                //     ->numeric(),
+
+                Select::make('fiscal_year')
+                    ->label('Fiscal Year')
+                    ->options(
+                        array_combine(
+                            range(now()->year + 1, now()->year - 20),
+                            range(now()->year + 1, now()->year - 20)
+                        )
+                    )
+                    ->searchable()
+                    ->required(),
+
                 TextInput::make('budget_code')
                     ->required(),
                 TextInput::make('name')
@@ -40,9 +52,15 @@ class BudgetForm
                 TextInput::make('remaining_amount')
                     ->required()
                     ->numeric(),
-                TextInput::make('status')
-                    ->required()
-                    ->default('draft'),
+                Select::make('status')
+                    ->options([
+                        'draft' => 'Draft',
+                        'proposed' => 'Proposed',
+                        'approved' => 'Approved',
+                        'active' => 'Active',
+                        'closed' => 'Closed',
+                    ])
+                    ->native(false),
                 TextInput::make('approved_by')
                     ->numeric(),
                 DateTimePicker::make('approved_at'),

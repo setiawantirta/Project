@@ -2,6 +2,7 @@
 
 namespace App\Filament\Program\Resources\ActivityPlans\Schemas;
 
+use App\Models\Lecturer;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
@@ -21,9 +22,15 @@ class ActivityPlanForm
                     ->disabled(fn () => Filament::getTenant() !== null)
                     ->dehydrated()
                     ->required(),
-                TextInput::make('budget_id')
-                    ->required()
-                    ->numeric(),
+                Select::make('budget_id')
+                    ->relationship('budget', 'name')
+                    ->getOptionLabelFromRecordUsing(fn ($record) =>
+                        '<strong>' . $record->budget_code . '</strong> : ' . $record->name
+                    )
+                    ->searchable()
+                    ->allowHtml()
+                    ->preload()
+                    ->required(),
                 TextInput::make('activity_code')
                     ->required(),
                 TextInput::make('name')
@@ -39,15 +46,44 @@ class ActivityPlanForm
                 DatePicker::make('end_date')
                     ->required(),
                 TextInput::make('location'),
-                TextInput::make('pic_user_id')
-                    ->numeric(),
+                // TextInput::make('pic_user_id')
+                //     ->numeric(),
+                Select::make('lecturer_id')
+                    ->label('PIC Lecturer')
+                    ->options(function () {
+                        return Lecturer::with('user')
+                            ->whereHas('user.roles', fn($q) => $q->where('name', 'lecturer'))
+                            ->whereHas('program', fn($q) => $q->where('programs.id', Filament::getTenant()?->id))
+                            ->get()
+                            ->pluck('user.name', 'id'); // key = lecturer.id, value = user.name
+                    })
+                    ->searchable()
+                    ->preload()
+                    ->required()
+                    ->helperText('Only users with lecturer role assigned to this program are shown.'),
                 TextInput::make('participant_count')
                     ->numeric(),
-                TextInput::make('category')
-                    ->required()
+                Select::make('category')
+                    ->options([
+                        'academic' => 'Academic',
+                        'research' => 'Research',
+                        'community_service' => 'Community Service',
+                        'event' => 'Event',
+                        'procurement' => 'Procurement',
+                        'other' => 'Other',
+                    ])
+                    ->native(false)
                     ->default('academic'),
-                TextInput::make('status')
-                    ->required()
+                Select::make('status')
+                    ->options([
+                        'draft' => 'Draft',
+                        'submitted' => 'Submitted',
+                        'approved' => 'Approved',
+                        'ongoing' => 'Ongoing',
+                        'completed' => 'Completed',
+                        'cancelled' => 'Cancelled',
+                    ])
+                    ->native(false)
                     ->default('draft'),
             ]);
     }

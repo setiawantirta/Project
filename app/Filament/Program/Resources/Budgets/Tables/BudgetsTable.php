@@ -14,8 +14,8 @@ class BudgetsTable
     {
         return $table
             ->columns([
-                TextColumn::make('program_id')
-                    ->numeric()
+                TextColumn::make('program.name')
+                    ->searchable()
                     ->sortable(),
                 TextColumn::make('fiscal_year')
                     ->numeric()

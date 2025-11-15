@@ -86,6 +86,10 @@ class Lecturer extends Model
         return $this->hasMany(FinalProjectSupervisor::class);
     }
 
+    public function activityPlans(): HasMany
+    {
+        return $this->hasMany(ActivityPlan::class);
+    }
     /**
      * Get lecturer's full name with title
      */

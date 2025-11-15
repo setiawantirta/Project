@@ -13,4 +13,9 @@ class Budget extends Model
     {
         return $this->belongsTo(Program::class);
     }
+
+    public function activityPlans()
+    {
+        return $this->hasMany(ActivityPlan::class);
+    }
 }

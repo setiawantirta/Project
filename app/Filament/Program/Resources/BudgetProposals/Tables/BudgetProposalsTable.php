@@ -14,14 +14,15 @@ class BudgetProposalsTable
     {
         return $table
             ->columns([
-                TextColumn::make('activity_plan_id')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('program_id')
-                    ->numeric()
-                    ->sortable(),
                 TextColumn::make('proposal_number')
                     ->searchable(),
+                TextColumn::make('activityPlan.name')
+                    ->numeric()
+                    ->sortable(),
+                // TextColumn::make('program.name')
+                //     ->numeric()
+                //     ->sortable(),
+                
                 TextColumn::make('total_amount')
                     ->numeric()
                     ->sortable(),
